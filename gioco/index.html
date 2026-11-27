@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>MULTIVERSE · Il viaggio tra le dimensioni</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>
+html,body{margin:0;height:100%;background:#02050c;overflow:hidden;font-family:Georgia,"Times New Roman",serif;color:#fff;overscroll-behavior:none}
+canvas{position:fixed;inset:0;display:block;touch-action:none;cursor:grab}
+#start{position:fixed;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:radial-gradient(ellipse at 50% 120%,#10244a,#02050c 70%);transition:opacity 2.5s ease}
+body.go #start{opacity:0;pointer-events:none}
+#start small{letter-spacing:.3em;color:#9db8ff;font-size:12px;text-transform:uppercase}
+#start h1{font-size:clamp(34px,8vw,84px);letter-spacing:.14em;margin:0;font-weight:400}
+#start p{margin:0;color:#c8d4f0;font-style:italic;letter-spacing:.06em}
+#start em{font-size:12px;color:#7f93c0;letter-spacing:.12em;margin-top:6px}
+#go{margin-top:30px;padding:12px 44px;font:inherit;letter-spacing:.3em;color:#fff;background:none;border:1px solid #9db8ff;cursor:pointer;opacity:0;pointer-events:none;transition:.4s}
+body.ready #go{opacity:1;pointer-events:auto}#go:hover{background:#9db8ff33}
+body.ready #status{display:none}
+.lid{position:fixed;left:0;right:0;height:50%;background:#000;z-index:5;pointer-events:none;display:none}#l1{top:0}#l2{bottom:0}body.go .lid{display:block}
+#sub{position:fixed;left:0;right:0;bottom:16%;text-align:center;z-index:7;font-size:clamp(18px,2.6vw,28px);font-style:italic;letter-spacing:.04em;color:#e8eeff;text-shadow:0 2px 14px #000;pointer-events:none}
+.hint{position:fixed;top:max(16px,env(safe-area-inset-top));left:0;right:0;text-align:center;font-size:12px;letter-spacing:.1em;text-shadow:0 1px 8px #000a;opacity:0;transition:opacity 2s ease 1s;pointer-events:none}body.play .hint{opacity:.8}
+#joy{position:fixed;left:26px;bottom:90px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);display:none;touch-action:none}
+#joy i{position:absolute;left:35px;top:35px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.55)}
+@media(pointer:coarse){#joy{display:block}}
+#prompt{position:fixed;left:0;right:0;bottom:22%;text-align:center;z-index:4;font-size:16px;letter-spacing:.14em;text-shadow:0 2px 10px #000;opacity:0;transition:opacity .25s;pointer-events:none}#prompt.on{opacity:1}
+#count{position:fixed;right:max(18px,env(safe-area-inset-right));top:max(16px,env(safe-area-inset-top));z-index:4;font-size:12px;letter-spacing:.14em;color:#c8d4f0;text-shadow:0 1px 8px #000;opacity:0;transition:opacity 1.5s}body.play #count{opacity:.9}
+#panel,#end{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:8;max-width:min(520px,88vw);max-height:84vh;overflow:auto;padding:22px 26px;background:rgba(6,12,26,.92);border:1px solid #6f86c8;box-shadow:0 0 40px #000c;display:none;line-height:1.5}
+#panel.on,#end.on{display:block}#panel h2,#end h2{margin:0 0 10px;font-weight:400;letter-spacing:.1em;color:#ffe08a;font-size:20px}#panel p,#end p{margin:8px 0}
+#panel img{max-width:100%;border:8px solid #f2efe6;border-bottom-width:30px;display:block;margin:0 auto 10px}.ph{border:2px dashed #6f86c8;padding:26px 12px;text-align:center;color:#9db8ff;margin-bottom:10px;font-size:14px}
+#panel .cl{color:#7f93c0;font-size:12px;letter-spacing:.14em;text-align:right}#end{text-align:center}#end button{margin-top:10px;padding:9px 30px;font:inherit;letter-spacing:.2em;color:#fff;background:none;border:1px solid #9db8ff;cursor:pointer}
+#flash{position:fixed;inset:0;background:#fff;z-index:9;opacity:0;pointer-events:none;transition:opacity .9s}#flash.on{opacity:1}
+</style></head><body>
+<div id="start"><small>Esame di maturità</small><h1>MULTIVERSE</h1><p>Il viaggio tra le dimensioni</p><div id="status">Costruisco l'isola…</div><button id="go">INIZIA</button><em>Usa le cuffie · alza il volume</em></div>
+<div class="lid" id="l1"></div><div class="lid" id="l2"></div><div id="sub"></div>
+<div class="hint">W A S D / FRECCE per camminare · TRASCINA per guardarti intorno · SHIFT per correre · SPAZIO per saltare · E per esaminare</div>
+<div id="prompt">[ E ] ESAMINA</div><div id="count"></div><div id="panel"></div><div id="end"><h2>Fine della prima parte</h2><p>Attraversando il portale, qui comincerà il Primo Universo: l'Inferno di Dante.</p><button id="back">TORNA SULL'ISOLA</button></div><div id="flash"></div>
+<div id="joy"><i></i></div>
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
+<script type="module" src="isola.js"></script>
+<script>if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(()=>{});</script>
+</body></html>
